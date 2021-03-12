@@ -1,2 +1,2 @@
-# youtube-trending-videos-scraper
+# Youtube Trending Videos Scraper
 A NodeJS application to scrap the popular videos from YouTube. 
