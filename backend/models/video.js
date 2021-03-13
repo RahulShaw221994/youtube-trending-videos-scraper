@@ -3,13 +3,19 @@ const mongoose = require("mongoose");
 const videoSchema = mongoose.Schema({
     videoId: {
         type: String,
-        required: true
+        required: true,
+        index: true,
+        unique: true
     },
     videoTitle: {
         type: String,
         required: true
     },
     videoDescription: {
+        type: String,
+        required: true
+    },
+    videoPublishedTime:{
         type: String,
         required: true
     },
@@ -41,7 +47,7 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    channelTumbnail: {
+    channelThumbnail: {
         type: String,
         required: true
     },
@@ -49,6 +55,10 @@ const videoSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model("Video", videoSchema);
