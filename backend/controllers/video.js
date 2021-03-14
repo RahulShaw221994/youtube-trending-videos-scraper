@@ -66,11 +66,17 @@ exports.videosListUpdate = async (req, res, next) => {
                 for (let k = 0; k < trendDataList[i].itemSectionRenderer.contents[j].shelfRenderer.content.expandedShelfContentsRenderer.items.length; k++) {
                     const videoDetailsPath = trendDataList[i].itemSectionRenderer.contents[j].shelfRenderer.content.
                     expandedShelfContentsRenderer.items[k].videoRenderer;
+                    let descriptionSnippet;
+                    if (videoDetailsPath.hasOwnProperty("descriptionSnippet")) {
+                        descriptionSnippet = videoDetailsPath.descriptionSnippet.runs[0].text;
+                    } else {
+                        descriptionSnippet = "No video description!";
+                    }
                     let videoDetailsObj = new VideoDetailsObj(videoDetailsPath.videoId, videoDetailsPath.title.runs[0].text,
-                        videoDetailsPath.descriptionSnippet.runs[0].text, videoDetailsPath.publishedTimeText.simpleText,
+                        descriptionSnippet, videoDetailsPath.publishedTimeText.simpleText,
                         `${youtubeViewUrl}${videoDetailsPath.videoId}`, videoDetailsPath.thumbnail.thumbnails[0].url, videoDetailsPath.viewCountText.simpleText,
-                        "sdsds", "dsdsds", videoDetailsPath.ownerText.runs[0].text, "dsdsd", videoDetailsPath.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer
-                        .thumbnail.thumbnails[0].url, "dsdsds");
+                        "likes", "dislikes", videoDetailsPath.ownerText.runs[0].text, "channel desc", videoDetailsPath.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer
+                        .thumbnail.thumbnails[0].url, "subscribers");
                     videoDetails.push(videoDetailsObj);
                 }
             }
