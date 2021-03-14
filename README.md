@@ -52,7 +52,7 @@ method:
 PUT
 ```
 
-## endpoin to return the videos list from the database.
+## endpoint to return the videos list from the database.
 url:
 ```
 http://localhost:3000/api/videosList
